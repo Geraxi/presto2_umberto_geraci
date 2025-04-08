@@ -4,6 +4,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RevisorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth;
 
 Route::get('/', [PublicController::class,'homepage'])->name('homepage');
 
@@ -43,6 +44,7 @@ Route::get('/search/article',[PublicController::class,'searchArticles'])->name('
 Route::get('/lingua/{lang}',[PublicController::class,'setLanguage'])->name('setLocale');
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');
+
 
 
 
