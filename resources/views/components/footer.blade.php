@@ -1,14 +1,6 @@
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-body-tertiary text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Left -->
-    <div class="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
-    </div>
-    <!-- Left -->
-
-    <!-- Right -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted align-items-center justify-content-center">
+ 
     <div>
       <a href="" class="me-4 text-reset">
         <i class="fab fa-facebook-f"></i>
@@ -42,23 +34,21 @@
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Company name
+            <i class="fas fa-gem me-3"></i>Presto.it
           </h6>
           <p>
-            Here you can use rows and columns to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
+            Un e-commerce per tutte le tue esigenze
           </p>
         </div>
         <!-- Grid column -->
 
         <!-- Grid column -->
-        <div class="col-md-5 offset-md-1 mb-3 text-center">
+        <div class="col-md-5 offset-md-1 mb-3 text-center align-items-center">
           <h5>Vuoi diventare revisore?</h5>
           <p>Cliccando il bottone sottostante farai richiesta al nostro admin</p>
           <a href="{{ route('become.revisor') }}" class="btn btn-success">diventa revisore</a>
         </div>
      
-        <!-- Grid column -->
 
         <!-- Grid column -->
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -66,14 +56,12 @@
           <h6 class="text-uppercase fw-bold mb-4">
             Useful links
           </h6>
+          
           <p>
-            <a href="#!" class="text-reset">Pricing</a>
+            <a href="#!" class="text-reset">Impostazioni</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Settings</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Orders</a>
+            <a href="#!" class="text-reset">Ordini</a>
           </p>
           <p>
             <a href="#!" class="text-reset">Help</a>
@@ -84,27 +72,19 @@
         <!-- Grid column -->
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <h6 class="text-uppercase fw-bold mb-4">Contattaci</h6>
+          <p><i class="fas fa-home me-3"></i> Milano, MI</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
             info@example.com
-          </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          
         </div>
-        <!-- Grid column -->
-      </s>
-      <!-- Grid row -->
+        
     </div>
   </section>
   <!-- Section: Links  -->
 
   <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
+ 
 </footer>
 <!-- Footer -->

@@ -9,7 +9,7 @@
     <title>Presto</title>
 </head>
 
-<body>
+<body class="bdy-custom">
     <x-navbar />
     <div class="min-vh-100">
         {{ $slot }}

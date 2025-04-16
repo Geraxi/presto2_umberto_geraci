@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 use Livewire\WithFileUploads;
 use App\Jobs\RemoveFaces;
+use App\Models\Category;
+
 
 class CreateArticleForm extends Component
 {
@@ -20,6 +22,8 @@ class CreateArticleForm extends Component
 
     public $images=[];
     public $temporary_images;
+    public $categories=[];
+    
 
 
     #[Validate('required|min:5')] 
@@ -31,6 +35,16 @@ class CreateArticleForm extends Component
     #[Validate('required')]
     public $category;
     public $article;
+
+
+
+    
+
+public function mount()
+{
+    $this->categories = Category::all();
+}
+
 
     public function store()
 {
