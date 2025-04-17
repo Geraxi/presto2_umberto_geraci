@@ -15,7 +15,7 @@ class RevisorController extends Controller
 {
     public function index()
     {
-        // Corrected code structure
+        
         $article_to_check = Article::where('is_accepted', null)->first();
         return view('revisor.index', compact('article_to_check'));
     }
@@ -35,13 +35,24 @@ class RevisorController extends Controller
         ->back()
         ->with('message',"Hai rifiutato l'articolo $article->title");
     }
-
     public function becomeRevisor()
     {
-        Mail::to('admin@presto.it')->send(new BecomeRevisor(Auth::user()));
-        return redirect()->route('homepage')->with('message','Complimeti, Hai richiesto di diventare revisor');
+        // Verifica che l'utente sia loggato
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Devi essere autenticato per richiedere di diventare revisore');
+        }
+    
+        // Ottieni l'utente autenticato
+        $user = auth()->user();
+    
+        // Invia l'email
+        Mail::to('admin@presto.it')->send(new BecomeRevisor($user));
+    
+        return redirect()->route('homepage')->with('message', 'Complimenti, Hai richiesto di diventare revisore');
     }
-
+    
+    
+    
     public function makeRevisor(User $user)
     {
         Artisan::call('app:make-user-revisor',['email'=>$user->email]);

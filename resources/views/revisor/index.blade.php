@@ -24,10 +24,10 @@
 
                 <div class="col-md-5 ps-3">
     <div class="card-body">
-        <h5>labels</h5> <!-- Fixed: % → > -->
-        @if ($image->labels) <!-- Fixed: gif → @if -->
+        <h5>labels</h5> 
+        @if ($image->labels) 
             @foreach ($image->labels as $label)
-                {{ $label }}, <!-- Fixed: #([ → {{ and syntax -->
+                {{ $label }}, 
             @endforeach
         @else
             <p class="fst-italic">No labels</p>
@@ -41,7 +41,7 @@
 
                 <div class="col-md-8 ps-3">
                     <div class="card-body">
-                        <h5>Rataings</h5> <!-- Fixed missing closing " -->
+                        <h5>Rataings</h5> 
                         <div class="row justify-content-center">
                             <div class="col-2">
                                 <div class="text-center mx-auto {{ $image->adult }}">
@@ -129,7 +129,7 @@
         <div class="row justify-content-center align-items-center height-custom text-center">
             <div class="col-12">
                 <h1 class="fst-italic display-4">
-                    Nessun articolo da revisionare <!-- Fixed "Reason" → "Nessun" -->
+                    Nessun articolo da revisionare 
                 </h1>
                 <a href="{{ route('homepage') }}" class="mt-5 btn btn-success">Torna all'homepage</a>
             </div>

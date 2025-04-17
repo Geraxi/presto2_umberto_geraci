@@ -46,6 +46,10 @@ Route::get('/lingua/{lang}',[PublicController::class,'setLanguage'])->name('setL
 Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');
 
 
+Route::get('/tutti-gli-articoli', [ArticleController::class, 'index'])->name('articles.index');
+
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('article.show');
+
 
 
 

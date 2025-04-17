@@ -6,22 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up()
+    public function up(): void
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->boolean('is_accepted')
-                  ->nullable()
-                  ->after('price'); // Position after price column
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->string('path');
+            $table->foreignId('article_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
-    
-    public function down()
+
+    public function down(): void
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn('is_accepted');
-        });
+        Schema::dropIfExists('images');
     }
 };

@@ -10,15 +10,15 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('images', function (Blueprint $table) {
-            $table->id();
-            $table->string('path')->nullable();
-            $table->unsignedBigInteger('article_id')->nullable();
-            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('images', function (Blueprint $table) {
+        $table->id();
+        $table->string('path');
+        $table->foreignId('article_id')->constrained()->onDelete('cascade');
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.

@@ -15,6 +15,9 @@ class Image extends Model
         'path'
     ];
 
+    protected $table = 'images'; 
+
+
     public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);
@@ -32,10 +35,10 @@ class Image extends Model
         return Storage::url($file);
     }
 
-    public function getUrl($w = null, $h = null)
-    {
-        return self::getUrlByFilePath($this->path, $w, $h);
-    }
+    public function getUrl($width, $height)
+{
+    return asset('storage/' . $this->path);
+}
 
     protected function casts(): array
     {

@@ -37,12 +37,7 @@ class BecomeRevisor extends Mailable
     /**
      * Get the message content definition.
      */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'mail.become.revisor'
-        );
-    }
+    
 
     /**
      * Get the attachments for the message.
@@ -51,4 +46,12 @@ class BecomeRevisor extends Mailable
     {
         return [];
     }
+
+    public function build()
+{
+    return $this->from('noreply@presto.it')
+                ->subject('Richiesta per diventare revisore')
+                ->view('auth.become-revisor');
+}
+
 }
