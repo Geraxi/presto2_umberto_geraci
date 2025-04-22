@@ -123,7 +123,7 @@
             </div>
         </div>
         
-        @endif
+       
 
     @else
         <div class="row justify-content-center align-items-center height-custom text-center">
