@@ -24,10 +24,9 @@ Route::get('revisor/index',[ArticleController::class,'index'])->name('revisor.in
 
 //accetazione/rifuito articolo
 
+Route::patch('/accept/{article}', [ArticleController::class, 'accept'])->name('accept');
+Route::patch('/reject/{article}', [ArticleController::class, 'reject'])->name('reject');
 
-Route::get('/accept/{article}',[ArticleController::class,'accept'])->name('accept');
-
-Route::get('/reject/{article}',[ArticleController::class,'reject'])->name('reject');
 
 //isrevisor
 
