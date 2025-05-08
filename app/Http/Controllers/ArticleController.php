@@ -45,5 +45,22 @@ class ArticleController extends Controller implements HasMiddleware
         return view('article.byCategory',compact('articles','category'));
     }
 
+
+    public function accept(Article $article)
+{
+    $article->is_accepted = true;
+    $article->save();
+
+    return redirect()->back()->with('message', 'Articolo accettato con successo.');
+}
+
+public function reject(Article $article)
+{
+    $article->is_accepted = false;
+    $article->save();
+
+    return redirect()->back()->with('message', 'Articolo rifiutato con successo.');
+}
+
     
 }
