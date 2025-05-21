@@ -7,38 +7,66 @@ use App\Models\Article;
 
 class PublicController extends Controller
 {
-   public function homepage() {
+    /**
+     * Mostra la homepage con gli ultimi 6 articoli accettati.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function homepage()
+    {
+        // Recupera gli ultimi 6 articoli accettati
+        $articles = Article::where('is_accepted', true)
+                           ->orderBy('created_at', 'desc')
+                           ->take(6)
+                           ->get();
 
-
-        $articles=Article::where('is_accepted',true)->orderBy('created_at','desc')->take(6)->get();
-        return view('welcome', compact('articles'));
+        // Restituisce la vista della homepage con gli articoli
+        return view('articles.welcome', compact('articles'));
     }
 
+    /**
+     * Imposta la lingua preferita dall'utente nella sessione.
+     *
+     * @param string $lang
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function setLanguage($lang)
     {
-        session()->put('locale',$lang);
+        // Memorizza la lingua scelta dall'utente nella sessione
+        session()->put('locale', $lang);
+
+        // Ritorna alla pagina precedente
         return redirect()->back();
     }
 
+    /**
+     * Cerca articoli basandosi sul titolo o sulla descrizione.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function searchArticles(Request $request)
-{
-    // Recupera il termine di ricerca dalla query string
-    $searchTerm = $request->query('q');
+    {
+        // Recupera il termine di ricerca dalla query string
+        $searchTerm = $request->query('q');
 
-    // Cerca nei campi 'title' e 'description'
-    $articles = Article::where('title', 'like', '%' . $searchTerm . '%')
-                        ->orWhere('description', 'like', '%' . $searchTerm . '%')
-                        ->where('is_accepted', true)
-                        ->paginate(10); // Paginazione
+        // Validazione: verifica che il termine di ricerca non sia vuoto
+        if (!$searchTerm || strlen(trim($searchTerm)) === 0) {
+            return redirect()->route('homepage')->with('message', 'Inserisci un termine di ricerca valido.');
+        }
 
-    // Passa il termine di ricerca e gli articoli alla vista
-    return view('articles.searched', [ // Aggiorna il percorso della vista
-        'articles' => $articles,
-        'query' => $searchTerm,
-    ]);
-}
+        // Cerca articoli nei campi 'title' e 'description' e filtra quelli accettati
+        $articles = Article::where('is_accepted', true)
+                           ->where(function ($query) use ($searchTerm) {
+                               $query->where('title', 'like', '%' . $searchTerm . '%')
+                                     ->orWhere('description', 'like', '%' . $searchTerm . '%');
+                           })
+                           ->paginate(10); // Paginazione
 
-    
-
-
+        // Passa i risultati della ricerca alla vista
+        return view('articles.searched', [
+            'articles' => $articles,
+            'query' => $searchTerm,
+        ]);
+    }
 }

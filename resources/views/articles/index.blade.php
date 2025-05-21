@@ -1,27 +1,29 @@
 <x-layout>
     <div class="container-fluid">
-        <div class="row height-custom justify-content-center align-items-center text-center">
+        <div class="row py-5 justify-content-center text-center">
             <div class="col-12">
                 <h1 class="display-1">Tutti gli articoli</h1>
             </div>
         </div>
-        <div class="row height-custom justify-content-center align-items-center py-5">
+        <div class="row justify-content-center py-5">
             @forelse ($articles as $article)
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-3 mb-4">
                     <x-card :article="$article" />
                 </div>
             @empty
                 <div class="col-12">
-                    <h3 class="text-center">
-                        Non sono ancora stati creati articoli
+                    <h3 class="text-center text-muted">
+                        Non sono ancora stati creati articoli.
                     </h3>
                 </div>
             @endforelse
         </div>
-        <div class="d-flex justify-content-center">
-            <div>
-                {{ $articles->links() }}
+        @if ($articles->hasPages())
+            <div class="d-flex justify-content-center">
+                <div>
+                    {{ $articles->links() }}
+                </div>
             </div>
-        </div>
+        @endif
     </div>
 </x-layout>
