@@ -21,7 +21,7 @@ class PublicController extends Controller
                            ->get();
 
         // Restituisce la vista della homepage con gli articoli
-        return view('articles.welcome', compact('articles'));
+        return view('article.welcome', compact('articles'));
     }
 
     /**
