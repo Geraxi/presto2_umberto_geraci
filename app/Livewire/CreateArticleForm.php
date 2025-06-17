@@ -110,7 +110,7 @@ class CreateArticleForm extends Component
     // Metodo per rimuovere un'immagine
     public function removeImage($key)
     {
-        if (isset($this->images[$key])) {
+        if (in_array($key, array_keys($this->images))) {
             unset($this->images[$key]);
         }
     }
