@@ -48,7 +48,7 @@ class PublicController extends Controller
     public function searchArticles(Request $request)
     {
         // Recupera il termine di ricerca dalla query string
-        $searchTerm = $request->query('q');
+        $searchTerm = $request->query('query'); 
 
         // Validazione: verifica che il termine di ricerca non sia vuoto
         if (!$searchTerm || strlen(trim($searchTerm)) === 0) {
@@ -64,7 +64,7 @@ class PublicController extends Controller
                            ->paginate(10); // Paginazione
 
         // Passa i risultati della ricerca alla vista
-        return view('articles.searched', [
+        return view('article.searched', [
             'articles' => $articles,
             'query' => $searchTerm,
         ]);
