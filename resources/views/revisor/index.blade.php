@@ -1,3 +1,5 @@
+<h1 class="display-1">{{ __('ui.allArticles') }}</h1>
+
 <x-layout>
     <div class="container-fluid pt-5">
         {{-- Titolo dashboard --}}
