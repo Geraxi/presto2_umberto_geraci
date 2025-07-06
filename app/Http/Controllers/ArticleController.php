@@ -2,65 +2,27 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use App\Models\Article;  
-use App\Models\Category;
-use Illuminate\Routing\Controllers\HasMiddleware;
-use Illuminate\Routing\Controllers\Middleware;
 
-
-
-class ArticleController extends Controller implements HasMiddleware
+class ArticleController extends Controller
 {
-
-    public static function middleware():array
+    public function index()
     {
-        return[
-            new Middleware('auth',only:['create']),
-        ];
+        // Display a listing of articles
     }
+
     public function create()
     {
-        return view('article.create');
+        // Show the form for creating a new article
     }
 
-    public function index()
-{
-    $articles = Article::where('is_accepted', true)->paginate(12); 
-
-    return view('article.index', compact('articles'));
-}
-
-    
-    
-
-    public function show(Article $article)
+    public function show($id)
     {
-        return view('article.show',compact('article'));
+        // Display the specified article
     }
 
-    public function byCategory(Category $category){
-        $articles=$category->articles->where('is_accepted',true);
-        return view('article.byCategory',compact('articles','category'));
+    public function byCategory($category)
+    {
+        // Display articles by category
     }
-
-
-    public function accept(Article $article)
-{
-    $article->is_accepted = true;
-    $article->save();
-
-    return redirect()->back()->with('message', 'Articolo accettato con successo.');
-}
-
-public function reject(Article $article)
-{
-    $article->is_accepted = false;
-    $article->save();
-
-    return redirect()->back()->with('message', 'Articolo rifiutato con successo.');
-}
-
-    
 }
