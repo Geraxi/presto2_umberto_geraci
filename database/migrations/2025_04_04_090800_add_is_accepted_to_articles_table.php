@@ -8,16 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
-            $table->id();
-            $table->string('path');
-            $table->foreignId('article_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
+        if (!Schema::hasColumn('articles', 'is_accepted')) {
+            Schema::table('articles', function (Blueprint $table) {
+                $table->boolean('is_accepted')->nullable()->after('user_id');
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        if (Schema::hasColumn('articles', 'is_accepted')) {
+            Schema::table('articles', function (Blueprint $table) {
+                $table->dropColumn('is_accepted');
+            });
+        }
     }
 };

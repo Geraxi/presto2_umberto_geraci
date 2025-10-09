@@ -32,4 +32,4 @@ Route::get('/articles', [ArticleController::class, 'index'])->name('article.inde
 Route::patch('/accept/{article}', [ArticleController::class, 'accept'])->name('accept');
 Route::patch('/reject/{article}', [ArticleController::class, 'reject'])->name('reject');
 
-Route::post('/lingua/{lang}', [PublicController::class,'setLanguage'])-> name('setLocale');
+// duplicate of setLocale removed

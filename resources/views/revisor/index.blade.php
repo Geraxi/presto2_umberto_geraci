@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-3">
                 <div class="rounded shadow bg-body-secondary">
-                    <h1 class="display-5 text-center pt-2">Revisor Dashboard</h1>
+                    <h1 class="display-5 text-center pt-2">{{ __('ui.revisorDashboard') }}</h1>
                 </div>
             </div>
         </div>
@@ -25,12 +25,12 @@
                                             <div class="col-md-4">
                                                 <img src="{{ $image->getUrl(300, 300) }}"
                                                      class="img-fluid rounded-start"
-                                                     alt="Immagine {{ $key + 1 }} dell'articolo '{{ $article_to_check->title }}'">
+                                                     alt="{{ __('ui.imageOfArticle', ['num' => $key + 1, 'title' => $article_to_check->title]) }}">
                                             </div>
 
                                             <div class="col-md-8">
                                                 <div class="card-body">
-                                                    <h5>Etichette</h5>
+                                                    <h5>{{ __('ui.labels') }}</h5>
                                                     @if ($image->labels)
                                                         <p>
                                                             @foreach ($image->labels as $label)
@@ -38,16 +38,16 @@
                                                             @endforeach
                                                         </p>
                                                     @else
-                                                        <p class="fst-italic">Nessuna etichetta disponibile</p>
+                                                        <p class="fst-italic">{{ __('ui.noLabels') }}</p>
                                                     @endif
 
-                                                    <h5 class="mt-3">Ratings</h5>
+                                                    <h5 class="mt-3">{{ __('ui.ratings') }}</h5>
                                                     @php
                                                         $ratings = ['adult', 'violence', 'spoof', 'racy', 'medical'];
                                                     @endphp
                                                     @foreach ($ratings as $rating)
                                                         <div class="d-flex justify-content-between">
-                                                            <span>{{ ucfirst($rating) }}</span>
+                                                            <span>{{ __("ui.$rating") }}</span>
                                                             <span class="badge bg-secondary">{{ $image->$rating }}</span>
                                                         </div>
                                                     @endforeach
@@ -74,8 +74,8 @@
                 <div class="col-md-4 d-flex flex-column justify-content-between ps-md-4">
                     <div>
                         <h1>{{ $article_to_check->title }}</h1>
-                        <h4>Autore: {{ $article_to_check->user->name }}</h4>
-                        <h4>Prezzo: €{{ number_format($article_to_check->price, 2) }}</h4>
+                        <h4>{{ __('ui.author') }}: {{ $article_to_check->user->name }}</h4>
+                        <h4>{{ __('ui.price') }}: €{{ number_format($article_to_check->price, 2) }}</h4>
                         <h5 class="fst-italic text-muted">{{ $article_to_check->category->name }}</h5>
                         <p class="mt-3">{{ $article_to_check->description }}</p>
                     </div>
@@ -85,14 +85,14 @@
                         <form action="{{ route('reject', ['article' => $article_to_check]) }}" method="POST">
                             @csrf
                             @method('PATCH')
-                            <button class="btn btn-danger py-2 px-5 fw-bold">Rifiuta</button>
+                            <button class="btn btn-danger py-2 px-5 fw-bold">{{ __('ui.reject') }}</button>
                         </form>
 
                         {{-- Bottone accetta --}}
                         <form action="{{ route('accept', ['article' => $article_to_check]) }}" method="POST">
                             @csrf
                             @method('PATCH')
-                            <button type="submit" class="btn btn-success py-2 px-5 fw-bold">Accetta</button>
+                            <button type="submit" class="btn btn-success py-2 px-5 fw-bold">{{ __('ui.accept') }}</button>
                         </form>
                     </div>
                 </div>
@@ -110,8 +110,8 @@
             {{-- Nessun articolo da revisionare --}}
             <div class="row justify-content-center align-items-center text-center mt-5">
                 <div class="col-12">
-                    <h1 class="fst-italic display-4">Nessun articolo da revisionare</h1>
-                    <a href="{{ route('homepage') }}" class="btn btn-success mt-4">Torna all'homepage</a>
+                    <h1 class="fst-italic display-4">{{ __('ui.nothingToReview') }}</h1>
+                    <a href="{{ route('homepage') }}" class="btn btn-success mt-4">{{ __('ui.backToHomepage') }}</a>
                 </div>
             </div>
         @endif

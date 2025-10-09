@@ -10,12 +10,12 @@
 
 <body>
     <div>
-        <h1>Un utente ha chiesto di lavorare con noi</h1>
-        <h2>Ecco i suoi dati:</h2>
-        <p>Nome: {{ $user->name }}</p>
-        <p>Email: {{ $user->email }}</p>
-        <p>Se vuoi renderlo revisore, clicca qui:</p> 
-        <a href="{{ route('make.revisor', compact('user')) }}">Rendi revisore</a> 
+        <h1>{{ __('ui.revisorRequestTitle') }}</h1>
+        <h2>{{ __('ui.hereAreHisData') }}</h2>
+        <p>{{ __('ui.name') }}: {{ $user->name }}</p>
+        <p>{{ __('ui.email') }}: {{ $user->email }}</p>
+        <p>{{ __('ui.makeRevisorInstructions') }}</p> 
+        <a href="{{ route('make.revisor', compact('user')) }}">{{ __('ui.makeRevisor') }}</a> 
     </div>
 </body>
 

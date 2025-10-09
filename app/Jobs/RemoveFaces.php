@@ -48,20 +48,25 @@ class RemoveFaces implements ShouldQueue
             $w = $bounds[2][0] - $bounds[0][0];
             $h = $bounds[2][1] - $bounds[0][1];
 
-            $image = Image::load($srcPath); // Fixed: SpaticImage → Image
+            $img = SpatieImage::load($srcPath);
 
-            $image->watermark(
-                base_path('resources/img/smile.png'),
-                AlignPosition::TopLeft,
-                paddingX: $bounds[0][0],
-                paddingY: $bounds[0][1],
-                width: $w,
-                height: $h,
-                fit: Fit::Stretch
-            );
-            $image->save($srcPath);
-            $imageAnnotator->close();
+            // Choose watermark asset (prefer smile.png; fallback to watermark.png); if none exist, skip gracefully
+            $smile = base_path('resources/img/smile.png');
+            $wm = base_path('resources/img/watermark.png');
+            $overlay = file_exists($smile) ? $smile : (file_exists($wm) ? $wm : null);
+            if ($overlay) {
+                $img->watermark(
+                    $overlay,
+                    AlignPosition::TopLeft,
+                    paddingX: $bounds[0][0],
+                    paddingY: $bounds[0][1],
+                    width: $w,
+                    height: $h,
+                    fit: Fit::Stretch
+                );
+                $img->save($srcPath);
+            }
         }
-        
+        $imageAnnotator->close();
     }
 }

@@ -38,7 +38,7 @@ class Image extends Model
 
     public function getUrl($width, $height)
 {
-    return asset('storage/' . $this->path);
+    return self::getUrlByFilePath($this->path, $width, $height);
 }
 
     protected function casts(): array
