@@ -101,17 +101,33 @@ class CreateArticleForm extends Component
             'temporary_images' => 'max:6', // Limita il numero di immagini a 6
         ]);
 
+        // Verifica che il totale non superi 6 immagini
+        $currentCount = count($this->images);
+        $newCount = count($this->temporary_images);
+        $totalCount = $currentCount + $newCount;
+        
+        if ($totalCount > 6) {
+            session()->flash('error', 'Puoi caricare al massimo 6 immagini in totale.');
+            $this->temporary_images = null;
+            return;
+        }
+
         // Aggiungi le immagini selezionate all'array delle immagini
         foreach ($this->temporary_images as $image) {
             $this->images[] = $image;
         }
+        
+        // Reset di temporary_images per permettere di aggiungere altre immagini
+        $this->temporary_images = null;
     }
 
     // Metodo per rimuovere un'immagine
     public function removeImage($key)
     {
-        if (in_array($key, array_keys($this->images))) {
+        if (isset($this->images[$key])) {
             unset($this->images[$key]);
+            // Riorganizza gli indici dell'array
+            $this->images = array_values($this->images);
         }
     }
 

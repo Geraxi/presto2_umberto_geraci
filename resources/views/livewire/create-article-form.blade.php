@@ -49,10 +49,10 @@
             <p class="fst-italic text-danger">{{ $message }}</p>
         @enderror
 
-        @if ($temporary_images)
+        @if (count($images) > 0)
             <p>Anteprima delle immagini:</p>
             <div class="row border border-4 border-success rounded shadow py-4">
-                @foreach ($temporary_images as $key => $image)
+                @foreach ($images as $key => $image)
                     <div class="col d-flex flex-column align-items-center my-3">
                         <div class="img-preview mx-auto shadow rounded" style="background-image: url({{ $image->temporaryUrl() }});"></div>
                         <button type="button" class="btn mt-1 btn-danger" wire:click="removeImage({{ $key }})">×</button>
@@ -78,8 +78,12 @@
         <div class="alert alert-success text-center">
             {{ session('success') }}
         </div>
+    @endif
 
-        
+    @if (session()->has('error'))
+        <div class="alert alert-danger text-center">
+            {{ session('error') }}
+        </div>
     @endif
 
     <div class="d-flex justify-content-center">

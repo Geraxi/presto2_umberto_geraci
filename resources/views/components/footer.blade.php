@@ -30,8 +30,20 @@
     <div class="container text-center text-md-start mt-5">
       <!-- Grid row -->
       <div class="row mt-3">
+        <!-- Grid column - Contattaci moved to left -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contattaci</h6>
+          <p><i class="fas fa-home me-3"></i> Milano, MI</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            info@example.com
+          </p>
+        </div>
         <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
             <i class="fas fa-gem me-3"></i>Presto.it
@@ -43,15 +55,7 @@
         <!-- Grid column -->
 
         <!-- Grid column -->
-        <div class="col-md-5 offset-md-1 mb-3 text-center align-items-center">
-          <h5>Vuoi diventare revisore?</h5>
-          <p>Cliccando il bottone sottostante farai richiesta al nostro admin</p>
-          <a href="{{ route('become.revisor') }}" class="btn btn-success">diventa revisore</a>
-        </div>
-     
-
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        <div class="col-md-3 col-lg-2 col-xl-2 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
             Useful links
@@ -70,14 +74,10 @@
         <!-- Grid column -->
 
         <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">Contattaci</h6>
-          <p><i class="fas fa-home me-3"></i> Milano, MI</p>
-          <p>
-            <i class="fas fa-envelope me-3"></i>
-            info@example.com
-          
+        <div class="col-md-3 col-lg-3 col-xl-4 mb-3 text-center align-items-center">
+          <h5>Vuoi diventare revisore?</h5>
+          <p>Cliccando il bottone sottostante farai richiesta al nostro admin</p>
+          <a href="{{ route('become.revisor') }}" class="btn btn-success">diventa revisore</a>
         </div>
         
     </div>
